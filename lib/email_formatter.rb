@@ -4,7 +4,15 @@ class EmailFormatter
     @recipients = recipients
   end
 
-  def strip_spaces_from_emails
+  def recipient_list
     @recipient_list ||= @recipients.gsub(/\s+/, '').split(/[\n,;]+/)
+  end
+
+  def invalid_recipients
+    @invalid_recipients ||= recipient_list.map do |item|
+      unless item.match(EMAIL_REGEX)
+        item
+      end
+    end.compact
   end
 end

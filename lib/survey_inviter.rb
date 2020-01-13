@@ -58,6 +58,6 @@ class SurveyInviter
   end
 
   def recipient_list
-    EmailFormatter.new(@recipients).strip_spaces_from_emails
+    EmailFormatter.new(@recipients).recipient_list
   end
 end
