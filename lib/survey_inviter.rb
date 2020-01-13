@@ -58,6 +58,6 @@ class SurveyInviter
   end
 
   def recipient_list
-    @recipient_list ||= @recipients.gsub(/\s+/, '').split(/[\n,;]+/)
+    EmailFormatter.new(@recipients).strip_spaces_from_emails
   end
 end
