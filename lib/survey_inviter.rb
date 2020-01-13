@@ -12,7 +12,6 @@
 # responsibilities 3 and 4. Create a new class to perform these tasks, and call
 # it from this one.
 class SurveyInviter
-  EMAIL_REGEX = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/
 
   def initialize(attributes = {})
     @survey = attributes[:survey]
@@ -40,11 +39,7 @@ class SurveyInviter
   end
 
   def invalid_recipients
-    @invalid_recipients ||= recipient_list.map do |item|
-      unless item.match(EMAIL_REGEX)
-        item
-      end
-    end.compact
+    EmailFormatter.new(@recipients).invalid_recipients
   end
 
   private
